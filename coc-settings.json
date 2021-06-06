@@ -61,11 +61,6 @@
 	"list.previewHighlightGroup": "Statement",
 	"list.nextKeymap": "<C-e>",
 	"list.previousKeymap": "<C-u>",
-	"importCost.bundleSizeDecoration": "both",
-	"importCost.typescriptExtensions": ["\\.tsx?$"],
-	"importCost.javascriptExtensions": ["\\.jsx?$"],
-	"importCost.showCalculatingDecoration": true,
-	"importCost.debug": false,
 	"snippets.ultisnips.directories": [
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
@@ -87,7 +82,6 @@
 	"yank.enableCompletion": false,
 	"typescript.suggestionActions.enabled": true,
 	"typescript.format.enabled": true,
-	"jest.watch": false,
 	"explorer.width": 38,
 	"explorer.quitOnOpen": true,
 	"explorer.sources": [

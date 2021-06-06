@@ -12,16 +12,13 @@
 " SidOfc/mkdx
 
 
+
 " ===
 " === Auto load for first time uses
 " ===
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
 	silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-if empty(glob('~/.config/nvim/plugged/wildfire.vim/autoload/wildfire.vim'))
 	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -33,7 +30,7 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 	let has_machine_specific_file = 0
 	silent! exec "!cp ~/.config/nvim/default_configs/_machine_specific_default.vim ~/.config/nvim/_machine_specific.vim"
 endif
-source $XDG_CONFIG_HOME/nvim/_machine_specific.vim
+source $XDG_CONFIG_HOME~/.config/nvim/_machine_specific.vim
 
 
 " ====================
@@ -130,6 +127,8 @@ let g:terminal_color_14 = '#9AEDFE'
 " ===
 " === Basic Mappings
 " ===
+
+
 " Set <LEADER> as <SPACE>, ; as :
 let mapleader=" "
 noremap ; :
@@ -160,9 +159,6 @@ vnoremap Y "+y
 nnoremap < <<
 nnoremap > >>
 
-" Delete find pair
-nnoremap dy d%
-
 " Search
 noremap <LEADER><CR> :nohlsearch<CR>
 
@@ -188,12 +184,12 @@ noremap <silent> <LEADER>o za
 " < n   i >
 "     e
 "     v
-noremap <silent> u k
+noremap <silent> u gk
 noremap <silent> n h
-noremap <silent> e j
+noremap <silent> e gj
 noremap <silent> i l
-noremap <silent> gu gk
-noremap <silent> ge gj
+noremap <silent> <M-u> gk
+noremap <silent> <M-e> gj
 noremap <silent> \v v$h
 
 " U/E keys for 5 times u/e (faster navigation)
@@ -201,9 +197,9 @@ noremap <silent> U 5k
 noremap <silent> E 5j
 
 " N key: go to the start of the line
-noremap <silent> N 0
+noremap <silent> N g0
 " I key: go to the end of the line
-noremap <silent> I $
+noremap <silent> I g$
 
 " Faster in-line navigation
 noremap W 5w
@@ -218,7 +214,7 @@ noremap <C-E> 5<C-e>
 
 
 
-source $XDG_CONFIG_HOME/nvim/cursor.vim
+source $XDG_CONFIG_HOME~/.config/nvim/cursor.vim
 
 "If you use Qwerty keyboard, uncomment the next line.
 "source $XDG_CONFIG_HOME/nvim/cursor_for_qwerty.vim
@@ -293,7 +289,6 @@ noremap <LEADER>q <C-w>j:q<CR>
 " ===
 " Create a new tab with tu
 noremap tu :tabe<CR>
-noremap tU :tab split<CR>
 " Move around tabs with tn and ti
 noremap tn :-tabnext<CR>
 noremap ti :+tabnext<CR>
@@ -306,7 +301,7 @@ noremap tmi :+tabmove<CR>
 " === Markdown Settings
 " ===
 " Snippets
-source $XDG_CONFIG_HOME/nvim/md-snippets.vim
+source $XDG_CONFIG_HOME~/.config/nvim/md-snippets.vim
 " auto spell
 autocmd BufRead,BufNewFile *.md setlocal spell
 
@@ -402,6 +397,76 @@ endfunc
 
 call plug#begin('~/.config/nvim/plugged')
 
+
+
+
+
+" +-+
+" -+- Planar Accomidations
+" +-+
+
+
+" Making it work in DOOM
+
+" noremap <Esc><Esc> <Esc>
+
+
+" +-+
+" -+- Plugins
+" +-+
+
+" Plug 'mhinz/vim-startify'
+" Plug 'vimwiki/vimwiki'
+Plug 'glepnir/dashboard-nvim'
+" Plug 'bling/vim-bufferline'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
+
+
+
+
+" +-+
+" -+- End of Plugins
+" +-+
+
+" +-+
+" -+- Plugins config
+" +-+
+" Dashboard
+
+let g:dashboard_default_executive ='fzf'
+nmap <Leader>ss :<C-u>SessionSave<CR>
+nmap <Leader>sl :<C-u>SessionLoad<CR>
+nnoremap <silent> <Leader>fh :DashboardFindHistory<CR>
+nnoremap <silent> <Leader>ff :DashboardFindFile<CR>
+nnoremap <silent> <Leader>tc :DashboardChangeColorscheme<CR>
+nnoremap <silent> <Leader>fa :DashboardFindWord<CR>
+nnoremap <silent> <Leader>fb :DashboardJumpMark<CR>
+nnoremap <silent> <Leader>cn :DashboardNewFile<CR>
+
+
+
+" +-+
+" -+- End of Plugins config
+" +-+
+
+
+
+
+
+
+
+" +-+
+" -+- End of Planar Accomidations
+" +-+
+
+
+
+
+
 " Plug 'LoricAndre/fzterm.nvim'
 
 " Testing my own plugin
@@ -463,7 +528,7 @@ Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 
 " Tex
-" Plug 'lervag/vimtex'
+Plug 'lervag/vimtex'
 
 " CSharp
 Plug 'OmniSharp/omnisharp-vim'
@@ -658,8 +723,6 @@ let g:coc_global_extensions = [
 	\ 'coc-flutter-tools',
 	\ 'coc-gitignore',
 	\ 'coc-html',
-	\ 'coc-import-cost',
-	\ 'coc-jest',
 	\ 'coc-json',
 	\ 'coc-lists',
 	\ 'coc-prettier',
@@ -678,8 +741,7 @@ let g:coc_global_extensions = [
 	\ 'coc-vetur',
 	\ 'coc-vimlsp',
 	\ 'coc-yaml',
-	\ 'coc-yank',
-	\ 'https://github.com/rodrigore/coc-tailwind-intellisense']
+	\ 'coc-yank']
 inoremap <silent><expr> <TAB>
 	\ pumvisible() ? "\<C-n>" :
 	\ <SID>check_back_space() ? "\<TAB>" :
@@ -755,14 +817,21 @@ autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 " ===
 " === vim-instant-markdown
 " ===
+
+filetype plugin on
+"Uncomment to override defaults:
 let g:instant_markdown_slow = 0
 let g:instant_markdown_autostart = 0
-" let g:instant_markdown_open_to_the_world = 1
-" let g:instant_markdown_allow_unsafe_content = 1
-" let g:instant_markdown_allow_external_content = 0
-" let g:instant_markdown_mathjax = 1
-let g:instant_markdown_autoscroll = 1
-
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+let g:instant_markdown_mathjax = 1
+let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+let g:instant_markdown_autoscroll = 1 
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+"let g:instant_markdown_browser = "Google Chrome"
 
 " ===
 " === vim-table-mode
@@ -830,7 +899,7 @@ let g:Lf_UseVersionControlTool = 0
 let g:Lf_IgnoreCurrentBufferName = 1
 let g:Lf_WildIgnore = {
         \ 'dir': ['.git', 'vendor', 'node_modules'],
-        \ 'file': ['__vim_project_root', 'class']
+        \ 'file': ['__vim_project_root']
         \}
 let g:Lf_UseMemoryCache = 0
 let g:Lf_UseCache = 0
@@ -1354,6 +1423,7 @@ nmap <LEADER>cu g<c
 vmap <LEADER>cu g<
 
 
+
 " ===
 " === vim-move
 " ===
@@ -1403,6 +1473,8 @@ let g:lazygit_floating_window_winblend = 0 " transparency of floating window
 let g:lazygit_floating_window_scaling_factor = 1.0 " scaling factor for floating window
 let g:lazygit_floating_window_corner_chars = ['╭', '╮', '╰', '╯'] " customize lazygit popup window corner characters
 let g:lazygit_use_neovim_remote = 1 " for neovim-remote support
+
+
 
 
 " ===================== End of Plugin Settings =====================

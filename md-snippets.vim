@@ -15,3 +15,16 @@ autocmd Filetype markdown inoremap <buffer> ,2 ##<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,3 ###<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,4 ####<Space><Enter><++><Esc>kA
 autocmd Filetype markdown inoremap <buffer> ,l --------<Enter>
+
+
+" Tex Snip
+autocmd Filetype markdown inoremap <buffer> .im $$<++><Esc>4hi
+autocmd Filetype markdown inoremap <buffer> .mb <Esc>o$$<Enter>$$<Enter><Enter><++><Esc>3ko
+autocmd Filetype markdown inoremap <buffer> .f \frac{}{<++>}<++><Esc>10hi
+autocmd Filetype markdown inoremap <buffer> .u ^{}<++><Esc>4hi
+autocmd Filetype markdown inoremap <buffer> .d _{}<++><Esc>4hi
+autocmd Filetype markdown inoremap <buffer> .a <Esc>o\begin{align}<Esc>/ =<Enter>a&<Esc>/$$<Enter>O\end{align}<Esc>kA\\<Esc>
+autocmd Filetype markdown inoremap <buffer> .in \int_{}^{<++>}<++>\,d<++><Esc>18hi
+autocmd Filetype markdown inoremap <buffer> .x \times<Space>
+autocmd Filetype markdown inoremap <buffer> .c \cdot<Space>
+autocmd Filetype markdown inoremap <buffer> .p <img src="./Pics/" width="60%" /><Esc>15hi
